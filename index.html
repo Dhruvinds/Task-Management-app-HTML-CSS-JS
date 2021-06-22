@@ -20,6 +20,45 @@
     <title>Tasky</title>
 </head>
 <body>
+
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add New Task</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="imageurl" class="form-label">Image Url</label>
+          <input type="url" class="form-control" id="imageurl" aria-describedby="imageurl" placeholder="https://example.com/hello.jpg">
+        </div>
+
+        <div class="mb-3">
+          <label for="tasktitle" class="form-label">Task Title</label>
+          <input type="text" class="form-control" id="tasktitle" aria-describedby="tasktitle" placeholder="Eg: API Integration">
+        </div>
+
+        <div class="mb-3">
+          <label for="tasktype" class="form-label">Task Type</label>
+          <input type="text" class="form-control" id="tasktype" aria-describedby="tasktype" placeholder="Eg: work">
+        </div>
+
+        <div class="mb-3">
+          <label for="taskdescription" class="form-label">Task Description</label>
+          <textarea name="taskdescription" id="" cols="" rows="6"  class="form-control" id="taskdescription" aria-describedby="taskdescription" placeholder="Describe your task in detail">
+          </textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
     <!-- NavBar code -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
@@ -33,7 +72,7 @@
                 <a class="nav-link active" aria-current="page" href="#">Home</a>
               </li>
             </ul>
-            <button type="button" class="btn btn-primary"><i class="fas fa-plus"></i> Add New</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-plus"></i> Add New</button>
           </div>
         </div>
       </nav>
@@ -99,9 +138,14 @@
         </section>
       </div>
       
-      
-
     <!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+<script 
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
+</script>
+
+  <!-- Our JavaScript file  -->
+
+  <script src="index.js"></script>
+
 </body>
 </html>
