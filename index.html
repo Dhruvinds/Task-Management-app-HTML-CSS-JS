@@ -47,13 +47,13 @@
 
         <div class="mb-3">
           <label for="taskdescription" class="form-label">Task Description</label>
-          <textarea name="taskdescription" id="" cols="" rows="6"  class="form-control" id="taskdescription" aria-describedby="taskdescription" placeholder="Describe your task in detail">
+          <textarea name="taskdescription"  rows="6"  class="form-control" id="taskdescription" aria-describedby="taskdescription" placeholder="Describe your task in detail">
           </textarea>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary" onclick="saveChanges()" data-bs-dismiss="modal">Save changes</button>
       </div>
     </div>
   </div>
@@ -91,7 +91,7 @@
 
         <!-- Cards -->
         <section>
-            <div class="row">
+            <div class="row task__container">
                 <div class="col-md-6 col-lg-4">
                     <div class="card">
                         <div class="card-header d-flex justify-content-end gap-2">
@@ -113,27 +113,7 @@
                         </div>
                       </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card">
-                        <div class="card-header d-flex justify-content-end gap-2">
-                            <button type="button" class="btn btn-outline-success">
-                                <i class="fas fa-pencil-alt"></i></button>
-                            <button type="button" class="btn btn-outline-danger">
-                                <i class="fas fa-trash"></i></button>
-                        </div>
-                        <img src="https://www.businessinsider.in/photo/81769906/How-to-reverse-image-search-on-Google-to-find-information-related-to-a-specific-photo.jpg?imgsize=297676" class="card-img-top" alt="...">
-
-
-                        <div class="card-body">
-                          <h5 class="card-title">Special title treatment</h5>
-                          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                        <div class="card-footer text-muted">
-                            <button type="button" class="btn btn-outline-primary float-end">Open Task</button>
-                        </div>
-                      </div>
-                </div>
+                
             </div>
         </section>
       </div>
