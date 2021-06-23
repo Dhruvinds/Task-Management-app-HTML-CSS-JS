@@ -1,6 +1,6 @@
 const taskContainer = document.querySelector(".task__container");
 
-const globalStore = [];
+let globalStore = [];
 
 
 const generateNewCard = (taskData) => `
@@ -9,8 +9,9 @@ const generateNewCard = (taskData) => `
                     <div class="card-header d-flex justify-content-end gap-2">
                         <button type="button" class="btn btn-outline-success">
                             <i class="fas fa-pencil-alt"></i></button>
-                        <button type="button" class="btn btn-outline-danger">
-                            <i class="fas fa-trash"></i></button>
+                        <button type="button" class="btn btn-outline-danger" id=${taskData.id} onclick="deleteCard.apply(this , arguments)">
+                            <i class="fas fa-trash"id=${taskData.id} onclick="deleteCard.apply(this , arguments)"></i>
+                        </button>
                     </div>
                     <img src=${taskData.imageUrl} class="card-img-top" alt="...">
 
@@ -34,9 +35,10 @@ const loadInitialCardData = () => {
     // Convert from string To normal object
     const {cards} = JSON.parse(getCardData);
 
-    // loop over those array of task object to create HTML card, Injected it to Dom
+    // loop over those array of task object to create HTML card, 
     cards.map((cardObject) => {
-        
+
+        // Injected it to Dom
         taskContainer.insertAdjacentHTML("beforeend", generateNewCard(cardObject));
 
         // Update our global store
@@ -65,6 +67,29 @@ const saveChanges = () => {
 
 };
 
+const deleteCard = (event) => {
+    event = window.event;
+    //  ID
+    const targetId = event.target.id;
+    const tagname = event.target.tagName; // BUTTON
+
+    // Match the id of the element with the id inside the globalstore
+    // If match found remove it
+    globalStore = globalStore.filter((cardObject) => cardObject.id !== targetId);
+
+    localStorage.setItem("tasky" , JSON.stringify({cards:globalStore}));
+
+    //  We have updated array of cards
+    // Contact Parent
+
+    if(tagname === "BUTTON"){
+        return taskContainer.removeChild(event.target.parentNode.parentNode.parentNode);
+    }else{
+        return taskContainer.removeChild(event.target.parentNode.parentNode.parentNode.parentNode);
+    }
+
+
+};
 // Close the model after save ->1-line
 
 // Parent Object
