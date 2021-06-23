@@ -1,5 +1,8 @@
 const taskContainer = document.querySelector(".task__container");
 
+const globalStore = [];
+
+
 const generateNewCard = (taskData) => `
 <div class="col-md-6 col-lg-4" id=${taskData.id}>
                 <div class="card">
@@ -24,6 +27,24 @@ const generateNewCard = (taskData) => `
             </div>
 `;
 
+const loadInitialCardData = () => {
+    // Localstorage to get tasky card data
+    const getCardData = localStorage.getItem("tasky");
+
+    // Convert from string To normal object
+    const {cards} = JSON.parse(getCardData);
+
+    // loop over those array of task object to create HTML card, Injected it to Dom
+    cards.map((cardObject) => {
+        
+        taskContainer.insertAdjacentHTML("beforeend", generateNewCard(cardObject));
+
+        // Update our global store
+        globalStore.push(cardObject);
+    })
+    
+};
+
 const saveChanges = () => {
     const taskData = {
         id: `${Date.now()}`,  // Every second unique number for id
@@ -35,6 +56,13 @@ const saveChanges = () => {
     
 
     taskContainer.insertAdjacentHTML("beforeend", generateNewCard(taskData));
+
+    globalStore.push(taskData);
+
+    // Provide Object to String --> Stringify
+
+    localStorage.setItem("tasky" , JSON.stringify({cards:globalStore}));
+
 };
 
 // Close the model after save ->1-line
@@ -42,3 +70,21 @@ const saveChanges = () => {
 // Parent Object
 // Browser --> Window
 // DOM --->  Document
+
+// Issues to be fixed
+
+// Page refresh will cause the data to be deleted ---> Local Storage
+
+// API --> Application Programing Interface
+
+// Localstorage is --> Application
+// Access application --> Programing
+// Interface as a middle man
+
+// Localstorage --> With some method --> JavaScript
+
+
+// Features
+// Delete the card
+// Edit the card
+//  Open the card
