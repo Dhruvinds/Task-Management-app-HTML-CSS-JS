@@ -87,7 +87,7 @@ const deleteCard = (event) => {
     }else{
         return taskContainer.removeChild(event.target.parentNode.parentNode.parentNode.parentNode);
     }
-
+    
 
 };
 // Close the model after save ->1-line
