@@ -7,10 +7,11 @@ const generateNewCard = (taskData) => `
 <div class="col-md-6 col-lg-4" id=${taskData.id}>
                 <div class="card">
                     <div class="card-header d-flex justify-content-end gap-2">
-                        <button type="button" class="btn btn-outline-success">
-                            <i class="fas fa-pencil-alt"></i></button>
+                        <button type="button" id=${taskData.id} class="btn btn-outline-success" onclick="editCard.apply(this , arguments)">
+                            <i class="fas fa-pencil-alt" id=${taskData.id} onclick="editCard.apply(this , arguments)"></i>
+                        </button>
                         <button type="button" class="btn btn-outline-danger" id=${taskData.id} onclick="deleteCard.apply(this , arguments)">
-                            <i class="fas fa-trash"id=${taskData.id} onclick="deleteCard.apply(this , arguments)"></i>
+                            <i class="fas fa-trash" id=${taskData.id} onclick="deleteCard.apply(this , arguments)"></i>
                         </button>
                     </div>
                     <img src=${taskData.imageUrl} class="card-img-top" alt="...">
@@ -22,7 +23,9 @@ const generateNewCard = (taskData) => `
                       <a href="#" class="btn btn-primary">${taskData.taskType}</a>
                     </div>
                     <div class="card-footer text-muted">
-                        <button type="button" class="btn btn-outline-primary float-end">Open Task</button>
+                        <button type="button" class="btn btn-outline-primary float-end">
+                        Open Task
+                    </button>
                     </div>
                   </div>
             </div>
@@ -90,26 +93,30 @@ const deleteCard = (event) => {
     
 
 };
-// Close the model after save ->1-line
 
-// Parent Object
-// Browser --> Window
-// DOM --->  Document
+// Content editable
 
-// Issues to be fixed
+const editCard = (event) => {
+    event = window.event;
+    //  ID
+    const targetId = event.target.id;
+    const tagname = event.target.tagName; // BUTTON
 
-// Page refresh will cause the data to be deleted ---> Local Storage
+    let parentElement;
 
-// API --> Application Programing Interface
+    if(tagname === "BUTTON"){
+        parentElement = event.target.parentNode.parentNode;
+    }else{
+        parentElement = event.target.parentNode.parentNode.parentNode;
+    }
 
-// Localstorage is --> Application
-// Access application --> Programing
-// Interface as a middle man
-
-// Localstorage --> With some method --> JavaScript
-
-
-// Features
-// Delete the card
-// Edit the card
-//  Open the card
+    let taskTitle = parentElement.childNodes[5].childNodes[1];
+    let taskDescription = parentElement.childNodes[5].childNodes[3];
+    let taskType = parentElement.childNodes[5].childNodes[5];
+    let submitButton = parentElement.childNodes[7].childNodes[1];
+    
+    taskTitle.setAttribute("contenteditable" , "true");
+    taskDescription.setAttribute("contenteditable" , "true");
+    taskType.setAttribute("contenteditable" , "true");
+    submitButton.innerHTML = "Save Changes";
+};
